@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Disease Detection</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+    function showPrediction(result) {
+        document.getElementById("result").innerHTML = result;
+    }
+</script>
+
+</head>
+<body>
+    <h1>Heart Disease Detection</h1>
+    <form id="heart-disease-form" action="/predict" method="POST" onsubmit="showPrediction('{{ prediction }}')">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br>
+
+        <label for="gender">Sex:</label>
+        <select id="gender" name="Sex" required>
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select><br>
+
+        <label for="pain">Do you have Chestpain:</label>
+        <select id="pain" name="pain" required>
+            <option value="1">Typical Agina</option>
+            <option value="2">Atypical Agina</option>
+            <option value="3">Non-aginal pain</option>
+            <option value="4">Asymptotic</option>
+        </select><br>
+
+        <label for="bp">Blood Pressure (mmHg):</label>
+        <input type="number" id="bp" name="bp" required><br>
+
+        <label for="chol">Cholesterol (mg/dl):</label>
+        <input type="number" id="chol" name="chol" required><br>
+
+        <label for="FBS">FBS over 120:</label>
+        <select id="FBS" id="FBS" name="FBS" required><br>
+            <option value = "1">YES:</option>
+            <option value = "0">NO:</option>
+        </select><br>
+
+        <label for="EKG">EKG result:</label>
+        <select id="EKG" id="FBS" name="EKG" required><br>
+            <option value = "0">No abnormalities detected:</option>
+            <option value = "1">Presence of abnormalities:</option>
+        </select><br>
+
+        <label for="HR">Maximum Heart Rate:</label>
+        <input type="number" id="HR" name="HR" required><br>
+
+        <label for="Agina">Exercise Agina:</label>
+        <select id="Agina" id="Agina" name="Agina" required><br>
+            <option value = "0">No experience of pain:</option>
+            <option value = "1">Experience of pain:</option>
+        </select><br>
+
+        <label for="ST">ST depression:</label>
+        <input type="number" id="ST" name="ST" required><br>
+
+        <label for="Slope">Slope of ST:</label>
+        <select id="Slope" id="Slope" name="Slope" required><br>
+            <option value = "1">Unsloping:</option>
+            <option value = "2">Downsloping:</option>
+            <option value = "3">Flat:</option>
+        </select><br>
+
+        <label for="Vessels">No of Vessels with blood flow issue:</label>
+        <select id="Vessels" id="Vessels" name="Vessels" required><br>
+            <option value = "0">No blood vessels with issue:</option>
+            <option value = "1">One blood vessel with issue:</option>
+            <option value = "2">Two blood vessels with issue:</option>
+            <option value = "3">Three blood vessels with issue:</option>
+        </select><br>
+       <label for="Thalium">Stress level in Thalium test:</label>
+        <select id="Thalium" id="Thalium" name="Thalium" required><br>
+            <option value = "3">Severly reduced blood flow:</option>
+            <option value = "7">Some abnormalities:</option>
+            <option value = "6">Significant abnormalities:</option>
+        </select><br>
+
+        <input type="submit" value="Predict">
+    </form>
+    <div id="result">
+        {{prediction}}
+    </div>
+</body>
+</html>
